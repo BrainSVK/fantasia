@@ -42,7 +42,7 @@ form .txt_field {
     left: 5px;
     color: #adadad;
     transform: translateY(-50%);
-    front-size: 16px;
+    /*front-size: 16px;*/
     pointer-events: none;
     transition: .5s;
 }
@@ -107,8 +107,17 @@ input[type="submit"]:hover {
     .center {
         width: 350px;
     }
+    /*body {*/
+    /*    background-size: auto;*/
+    /*}*/
     body {
-        background-size: auto;
+        background-image: url('img/pozadie-loginu1.jpg');
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    body {
+        background-image: url('img/pozadie-loginu2.jpg');
     }
 }
 
@@ -118,14 +127,6 @@ input[type="submit"]:hover {
     }
 }
 
-@media only screen and (max-height: 578px) {
-    .center {
-        width: 350px;
-    }
-    body {
-        background-size: auto;
-    }
-}
 
 header {
     position: absolute;
@@ -213,7 +214,7 @@ header .navigation h1 {
 
 .statyHlava h1 {
     font-size: 25px;
-    font-family: "Arial Black";
+    /*font-family: "Arial Black";*/
     letter-spacing: 3px;
     color: white;
     text-align: center;
@@ -222,7 +223,7 @@ header .navigation h1 {
 .staty {
     top: 50px;
     width: 100%;
-    bottom: 0px;
+    bottom: 0;
     position: absolute;
 }
 
@@ -240,7 +241,7 @@ header .navigation h1 {
 .statOkno h1 {
     margin-top: auto;
     font-size: 15px;
-    font-family: "Arial Black";
+    /*font-family: "Arial Black";*/
     letter-spacing: 3px;
     color: white;
     align-items: center;
@@ -330,7 +331,7 @@ header .navigation h1 {
 
 .tabulka ,td {
     position: relative;
-    padding: 50px 50px;
+    padding: 37px 37px;
     border: 5px solid;
     border-collapse: collapse;
 }
