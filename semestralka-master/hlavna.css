@@ -6,14 +6,24 @@ body {
     height: 100%;
     margin: auto 0;
 }
+
+.l {
+    height: 400px;
+}
+.r {
+    height: 500px;
+}
+.o {
+    height: 280px;
+}
+
 .center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
     background: white;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 .center h1 {
     text-align: center;
@@ -88,8 +98,8 @@ input[type="submit"]:hover {
     border-color: black;
     transition: .5s;
 }
-.signup_link {
-    margin: 30px 0;
+.singup_link {
+    margin: 10px 0;
     text-align: center;
     font-size: 16px;
     color: gray;
@@ -103,15 +113,12 @@ input[type="submit"]:hover {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-    .center {
-        width: 350px;
-    }
-    /*body {*/
-    /*    background-size: auto;*/
-    /*}*/
-    body {
-        background-image: url('img/pozadie-loginu1.jpg');
+
+/*Postava*/
+
+@media only screen and (min-width: 768px) {
+    .stredny {
+        width: 50%;
     }
 }
 
@@ -124,6 +131,42 @@ input[type="submit"]:hover {
 @media only screen and (min-width: 1000px) {
     body {
         background-image: url('img/pozadie-loginu.png');
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .stredny {
+        width: 85%;
+    }
+    body {
+        background-image: url('img/pozadie-loginu1.jpg');
+    }
+}
+
+@media only screen and (max-width: 495px){
+    .obrazok {
+        display: none;
+    }
+    .statyHlava {
+        left: 20px;
+    }
+    .statyAktual{
+        left: 20px;
+    }
+    .center {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 495px){
+    .statyHlava {
+        left: 192px;
+    }
+    .statyAktual {
+        left: 192px;
+    }
+    .center {
+        width: 350px;
     }
 }
 
@@ -177,54 +220,123 @@ header .navigation h1 {
 
 .stredny {
     position: relative;
-    width: 85%;
     margin: auto auto 10%;
     top: 200px;
-    height: 400px;
+    height: 430px;
 }
 
 .priehladny {
     width: 100%;
     height: 90%;
     position: absolute;
-    border: 3px solid #73AD21;
+    border: 3px solid #19933f;
     background: #adadad;
     opacity: 0.8;
+    border-radius: 30px;
 }
 
-/*.obrazok {*/
-/*    background-size: cover;*/
-/*    position: absolute;*/
-/*    background-image: url("img/fiary1.png");*/
-/*    background-repeat: no-repeat;*/
-/*    top: 20px;*/
-/*    width: auto;*/
-/*    margin: auto 20px;*/
-/*    border: 3px solid #73AD21;*/
-/*    height: 60%*/
-/*}*/
+.obrazok {
+    background-size: cover;
+    position: absolute;
+    background-image: url("img/fiary1.png");
+    background-repeat: no-repeat;
+    top: 20px;
+    width: 150px;
+    margin: auto 20px;
+    border: 3px solid #19933f;
+    border-radius: 30px;
+    height: 60%
+}
 
 .statyHlava {
-    top: 20px;
-    left: 20px;
+    top: 200px;
     right: 20px;
     bottom: 15px;
     position: absolute;
 }
 
 .statyHlava h1 {
-    font-size: 25px;
+    font-size: 20px;
     /*font-family: "Arial Black";*/
     letter-spacing: 3px;
     color: white;
     text-align: center;
 }
 
+.statyAktual {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+}
+
+.statyAktual h1 {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
+}
+
+.statyAktualRozOkno {
+    top: 5px;
+    margin: 2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 15px;
+    border: 3px solid #19933f;
+    position: relative;
+    border-radius: 30px;
+}
+
+.statyAktualRozOkno h1 {
+    margin-top: auto;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: white;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.statyAktualRozOkno p {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: white;
+    text-align: right;
+    position: absolute;
+    top: -12px;
+    right: 5px;
+}
+
 .staty {
-    top: 50px;
+    top: 25px;
     width: 100%;
     bottom: 0;
     position: absolute;
+}
+
+.skryteOkno{
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 50px;
+    border: 3px solid #19933f;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #adadad;
+    border-radius: 30px;
+}
+
+.skryteOkno p {
+    top: -20px;
+    left: 10px;
+    right: 10px;
+    font-size: 14px;
+    padding: 5px;
+    color: white;
+    position: absolute;
+    text-align: center;
 }
 
 .statOkno {
@@ -233,9 +345,71 @@ header .navigation h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
-    height: 25px;
-    border: 3px solid #73AD21;
+    height: 15px;
+    border: 3px solid #19933f;
     position: relative;
+    border-radius: 30px;
+}
+
+.sila:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: crimson;
+}
+
+.sila:hover h1 {
+    color: crimson;
+}
+
+
+.magia:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: blue;
+}
+
+.magia:hover h1 {
+    color: blue;
+}
+
+.sta:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: #fada55;
+}
+
+.sta:hover h1 {
+    color: #fada55;
+}
+
+.vie:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: darkorange;
+}
+
+.vie:hover h1 {
+    color: darkorange;
+}
+
+.vit:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: green;
+}
+
+.vit:hover h1 {
+    color: green;
+}
+
+.stam:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: darkgoldenrod;
+}
+
+.stam:hover h1 {
+    color: darkgoldenrod;
 }
 
 .statOkno h1 {
@@ -286,10 +460,40 @@ header .navigation h1 {
     background: none;
 }
 
-@media only screen and (min-width: 768px){
-    .stredny {
-        width: 50%;
-    }
+/*Schopnosti*/
+
+.statySchopnosti {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 15px;
+    position: absolute;
+}
+
+.statySchopnosti h1 {
+    font-size: 20px;
+    /*font-family: "Arial Black";*/
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
+}
+
+/*adventura*/
+
+.statyAdventura{
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 15px;
+    position: absolute;
+}
+
+.statyAdventura h1 {
+    font-size: 20px;
+    /*font-family: "Arial Black";*/
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
 }
 
 .scrollmenu {
