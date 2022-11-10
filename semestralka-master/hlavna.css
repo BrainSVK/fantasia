@@ -116,7 +116,7 @@ input[type="submit"]:hover {
 
 /*Postava*/
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 970px) {
     .stredny {
         width: 50%;
     }
@@ -134,7 +134,7 @@ input[type="submit"]:hover {
     }
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 970px){
     .stredny {
         width: 85%;
     }
@@ -143,8 +143,11 @@ input[type="submit"]:hover {
     }
 }
 
-@media only screen and (max-width: 495px){
+@media only screen and (max-width: 570px){
     .obrazok {
+        display: none;
+    }
+    .statySchopnosti {
         display: none;
     }
     .statyHlava {
@@ -158,7 +161,7 @@ input[type="submit"]:hover {
     }
 }
 
-@media only screen and (min-width: 495px){
+@media only screen and (min-width: 570px){
     .statyHlava {
         left: 192px;
     }
@@ -242,7 +245,7 @@ header .navigation h1 {
     background-repeat: no-repeat;
     top: 20px;
     width: 150px;
-    margin: auto 20px;
+    margin: auto 35px;
     border: 3px solid #19933f;
     border-radius: 30px;
     height: 60%
@@ -330,6 +333,17 @@ header .navigation h1 {
 
 .skryteOkno p {
     top: -20px;
+    left: 10px;
+    right: 10px;
+    font-size: 14px;
+    padding: 5px;
+    color: white;
+    position: absolute;
+    text-align: center;
+}
+
+.skryteOkno p1 {
+    top: 0;
     left: 10px;
     right: 10px;
     font-size: 14px;
@@ -463,20 +477,106 @@ header .navigation h1 {
 /*Schopnosti*/
 
 .statySchopnosti {
-    top: 20px;
-    left: 20px;
-    right: 20px;
+    top: 273px;
+    left: 50px;
     bottom: 15px;
     position: absolute;
 }
 
 .statySchopnosti h1 {
-    font-size: 20px;
-    /*font-family: "Arial Black";*/
-    letter-spacing: 3px;
+    font-size: 17px;
+    letter-spacing: 2px;
     color: white;
     text-align: center;
 }
+
+.pouzivaneSchopnosti {
+    top: 70px;
+    margin: 2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 70px;
+    border: 3px solid #19933f;
+    position: absolute;
+    border-radius: 30px;
+}
+
+.rozdelSchopnosti {
+    top: 200px;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 270px;
+    height: 350px;
+    position: relative;
+    border-radius: 30px;
+}
+
+.schopnostiUtokov {
+    top: -2px;
+}
+
+.schopnostiUtokov {
+    top: -10px;
+    right: 30px;
+    position: absolute;
+}
+
+.schopnostiUtokov h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.schopnostiUtokovRozOkno {
+    top: 25px;
+    margin: 2px;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 70px;
+    border: 3px solid #19933f;
+    position: relative;
+    border-radius: 30px;
+    display: flex;
+}
+
+.schopnostiUtokovRozOkno li {
+    list-style: none;
+    margin: 0 3px -2px;
+    opacity: 0.7;
+}
+
+.schopnostiUtokovRozOkno li:hover {
+    opacity: 1;
+}
+
+.schopnostiUtokovRozOkno img {
+    border-radius: 30px;
+}
+
+.fire:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: crimson;
+}
+
+.frost:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: blue;
+}
+
+.wind:hover .skryteOkno {
+    opacity: 1;
+    visibility: visible;
+    background-color: darkseagreen;
+}
+
+
 
 /*adventura*/
 
