@@ -11,6 +11,8 @@ var maxZivoty = 0;
 var zivot = 0;
 var zivotNepriatela = 0;
 var maxZivotNepriatela = 0;
+var randomSiliUtokuNepriatela = 0;
+var randomPercentoNepriatela = 0;
 
 function spusti(_obtiaznost,_fyzickaSila,_magickaSila,_viera,_stamina,_vitalita,_stastie) {
     obtiaznost = _obtiaznost;
@@ -20,9 +22,15 @@ function spusti(_obtiaznost,_fyzickaSila,_magickaSila,_viera,_stamina,_vitalita,
     stamina = _stamina;
     vitalita = _vitalita;
     stastie = _stastie;
-    // if (obtiaznost > 0 && obtiaznost < 5) {
+    if (obtiaznost > 0 && obtiaznost < 5) {
+        gid('oknoBoj').style.background = "url('img/adventuraWinter.png')";
+    } else if (obtiaznost > 4 && obtiaznost < 9) {
+        gid('oknoBoj').style.background = "url('img/adventuraForest.png')";
+    } else if (obtiaznost > 8 && obtiaznost < 13) {
         gid('oknoBoj').style.background = "url('img/prostredie.png')";
-    // }
+    } else {
+        gid('oknoBoj').style.background = "url('img/adventuraLava.png')";
+    }
     gid('oknoBoj').style.backgroundRepeat = "no-repeat";
     gid('oknoBoj').style.backgroundSize = "cover";
     gid('oknoBoj').style.display = "block";
@@ -35,15 +43,13 @@ function spusti(_obtiaznost,_fyzickaSila,_magickaSila,_viera,_stamina,_vitalita,
     maxZivoty = zivot.value;
     zivotNepriatela = gid("healthNepriatel");
     maxZivotNepriatela = zivotNepriatela.value;
+    randomSiliUtokuNepriatela = (Math.floor(Math.random() * 12) + 8) * obtiaznost;
+    randomPercentoNepriatela = (Math.random() * 1) + 0.5;
     vypisZivoty();
 }
 
 function gid(_elementId) {
     return document.getElementById(_elementId);
-}
-
-function createEl(_elementId) {
-    return document.createElement()
 }
 
 function setPopis(_gid,_popis) {
@@ -80,14 +86,73 @@ function minusZivoty(_minus,_kto) {
     }
 }
 
+function plusZivoty(_plus) {
+    zivot.value += _plus;
+}
+
 function flyingkick() {
-    minusZivoty(fyzSila*0.6,2);
+    let percento = 0.4;
+    let percentoSili = 0.8
+    let fyz = percentoSili*fyzSila;
+    utok(fyz,0,0,percento);
+
+}
+
+function utok(_fyz,_mag,_vie,_percento) {
+    if (_fyz > 0) {
+        minusZivoty(_fyz - (maxZivotNepriatela/2),2);
+        let random = Math.random() ;
+        if (_percento == 0.4) {
+            if (random < _percento) {
+                flyingkick();
+            }
+        }
+    } else if (_mag > 0) {
+        minusZivoty(maxZivotNepriatela/_mag,2);
+    } else if (_vie == 1) {
+        if ((zivot.value + viera/2) > maxZivoty) {
+            zivot.value = maxZivoty;
+        } else {
+            plusZivoty(viera/2);
+        }
+    } else if (_vie == 2) {
+        stamina += stamina/5;
+        vitalita += vitalita/5;
+    } else if (_vie == 3) {
+        fyzSila += fyzSila/5;
+        fyzSila += fyzSila/5;
+    }
+    if (zivotNepriatela.value <= 0) {
+        vypisZivoty();
+        sleep(2000).then(() => { vyhralSi(); });
+    }
     utokNepriatela();
+    if (zivot.value <= 0) {
+        vypisZivoty();
+        sleep(2000).then(() => { prehralSi(); });
+    }
     vypisZivoty();
 }
 
 function utokNepriatela() {
-    let randomSiliUtoku = (Math.floor(Math.random() * 10) + 1) * obtiaznost;
-    let randomPercento = (Math.random() * 0.5) + 0.1;
-    minusZivoty(randomSiliUtoku*randomPercento,1);
+    let utok = Math.random();
+    if (utok > 0.5) {
+        minusZivoty((randomSiliUtokuNepriatela*randomPercentoNepriatela) - (vitalita/2),1);
+    } else {
+        minusZivoty((randomSiliUtokuNepriatela*randomPercentoNepriatela) - (stamina/2),1);
+    }
+}
+
+function vyhralSi() {
+    gid('oknoBoj').style.display = "none";
+    gid('stredny').style.display = "block";
+}
+
+function prehralSi() {
+    gid('oknoBoj').style.display = "none";
+    gid('stredny').style.display = "block";
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
