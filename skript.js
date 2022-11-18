@@ -100,7 +100,7 @@ function plusZivoty(_plus) {
 
 function flyingkick() {
     let nazovUtok = "flyingkick";
-    let percento = 0.4;
+    let percento = 0.8;
     let percentoSili = 0.9;
     let fyz = percentoSili*fyzSila;
     utok(fyz,0,0,percento,nazovUtok);
@@ -110,14 +110,14 @@ function flyingkick() {
 function bodyslam() {
     let nazovUtok = "bodyslam";
     let percento = 0.2;
-    let percentoSili = 1.2;
+    let percentoSili = 1.4;
     let fyz = percentoSili*fyzSila;
     utok(fyz,0,0,percento,nazovUtok);
 
 }
 
 function punchgataling() {
-    let nazovUtok = "fireball";
+    let nazovUtok = "punchingGataling";
     let percento = 0.8;
     let percentoSili = 0.6;
     let fyz = percentoSili*fyzSila;
@@ -181,26 +181,30 @@ function utok(_fyz,_mag,_vie,_percento,_utok) {
         minusZivoty(_fyz - (maxZivotNepriatela/2),2);
         let random = Math.random() ;
         if (_utok == "flyingkick") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
-                    throw new Error("Stopping the function!");
+                } else {
+                    utokNepriatela();
                 }
             }
         }
         if (_utok == "bodyslam") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
-                    throw new Error("Stopping the function!");
+                } else {
+                    utokNepriatela();
                 }
             }
         }
         if (_utok == "punchingGataling") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
                     punchgataling();
+                } else {
+                    utokNepriatela();
                 }
             }
         }
@@ -208,27 +212,30 @@ function utok(_fyz,_mag,_vie,_percento,_utok) {
         minusZivoty(_mag - (maxZivotNepriatela/4),2);
         let random = Math.random() ;
         if (_utok == "fireball") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
                     burn();
                 }
+                utokNepriatela();
             }
         }
         if (_utok == "frostnova") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
                     frost();
                 }
+                utokNepriatela();
             }
         }
         if (_utok == "windslash") {
-            if (random <= _percento) {
-                if (zivotNepriatela.value > 0) {
+            if (zivotNepriatela.value > 0) {
+                if (random <= _percento) {
                     vypisZivoty();
                     wind();
                 }
+                utokNepriatela();
             }
         }
     } else if (_vie == 1) {
@@ -257,12 +264,14 @@ function utokNepriatela() {
 }
 
 function vyhralSi() {
-    gid('oknoBoj').style.display = "none";
-    gid('stredny').style.display = "block";
-
+    setTimeout(koniec, 2000);
 }
 
 function prehralSi() {
+    setTimeout(koniec, 2000);
+}
+
+function koniec() {
     gid('oknoBoj').style.display = "none";
     gid('stredny').style.display = "block";
 }
@@ -270,13 +279,11 @@ function prehralSi() {
 function skontrolujZivoty() {
     if (zivotNepriatela.value == 0) {
         vypisZivoty();
-        setTimeout(vyhralSi, 2000);
+        vyhralSi();
     } else {
-        utokNepriatela();
         if (zivot.value == 0) {
             vypisZivoty();
-            setTimeout(prehralSi, 2000);
-            stop();
+            prehralSi();
         } else {
             vypisZivoty();
         }

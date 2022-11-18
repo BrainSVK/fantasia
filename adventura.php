@@ -77,7 +77,7 @@ if (!empty($_SESSION["id"])) {
                         <?php
                     } else {
                         ?>
-                        <img src="img/windSlash60.png" alt="schopnost windslash">
+                        <img onclick="windslash(this.src)" src="img/windSlash60.png" alt="schopnost windslash">
                         <?php
                     }
                     ?>
