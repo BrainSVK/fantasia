@@ -218,7 +218,7 @@ if (isset($_POST['attakebonus'])) {
                                         <p2>spôsobuje umrznutie
                                             <div class="frot">
                                                 <div class="skryteOkno2">
-                                                <p3>Umrznutie spomaľuje pohyb uživateľa dokým je zmrazený</p3>
+                                                <p3>Umrznutie poškodzuje uživateľa dokým mrzne</p3>
                                                 </div>
                                             </div>
                                         </p2>

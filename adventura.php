@@ -57,11 +57,11 @@ if (!empty($_SESSION["id"])) {
                         <?php
                     } elseif ($row2['id_fyz'] == 2) {
                         ?>
-                        <img src="img/BodySlam60.png" alt="schopnost bodyslam">
+                        <img onclick="bodyslam(this.src)" src="img/BodySlam60.png" alt="schopnost bodyslam">
                         <?php
                     } else {
                         ?>
-                        <img src="img/PunchGataling60.png" alt="schopnost punchinggataling">
+                        <img onclick="punchgataling(this.src)" src="img/PunchGataling60.png" alt="schopnost punchinggataling">
                         <?php
                     }
                     ?>
@@ -69,11 +69,11 @@ if (!empty($_SESSION["id"])) {
                     <?php
                     if ($row2['id_mag'] == 1) {
                         ?>
-                        <img src="img/fireBall60.png" alt="schopnost fireball">
+                        <img onclick="fireball(this.src)" src="img/fireBall60.png" alt="schopnost fireball">
                         <?php
                     } elseif ($row2['id_mag'] == 2) {
                         ?>
-                        <img src="img/frostNova60.png" alt="schopnost frostnova">
+                        <img onclick="frostnova(this.src)" src="img/frostNova60.png" alt="schopnost frostnova">
                         <?php
                     } else {
                         ?>

@@ -99,24 +99,138 @@ function plusZivoty(_plus) {
 }
 
 function flyingkick() {
+    let nazovUtok = "flyingkick";
     let percento = 0.4;
-    let percentoSili = 0.8
+    let percentoSili = 0.9;
     let fyz = percentoSili*fyzSila;
-    utok(fyz,0,0,percento);
+    utok(fyz,0,0,percento,nazovUtok);
 
 }
 
-function utok(_fyz,_mag,_vie,_percento) {
+function bodyslam() {
+    let nazovUtok = "bodyslam";
+    let percento = 0.2;
+    let percentoSili = 1.2;
+    let fyz = percentoSili*fyzSila;
+    utok(fyz,0,0,percento,nazovUtok);
+
+}
+
+function punchgataling() {
+    let nazovUtok = "fireball";
+    let percento = 0.8;
+    let percentoSili = 0.6;
+    let fyz = percentoSili*fyzSila;
+    utok(fyz,0,0,percento,nazovUtok);
+
+}
+
+function fireball() {
+    let nazovUtok = "fireball";
+    let percento = 0.5;
+    let percentoSili = 1.2;
+    let mag = percentoSili*magSila;
+    utok(0,mag,0,percento,nazovUtok);
+
+}
+
+function burn() {
+    if (zivotNepriatela.value - maxZivotNepriatela*0.1 > 0) {
+        zivotNepriatela.value -= maxZivotNepriatela*0.1;
+    } else {
+        zivotNepriatela.value = 0;
+    }
+}
+
+function frostnova() {
+    let nazovUtok = "frostnova";
+    let percento = 0.7;
+    let percentoSili = 1;
+    let mag = percentoSili*magSila;
+    utok(0,mag,0,percento,nazovUtok);
+
+}
+
+function frost() {
+    if (zivotNepriatela.value - maxZivotNepriatela*0.05 > 0) {
+        zivotNepriatela.value -= maxZivotNepriatela*0.05;
+    } else {
+        zivotNepriatela.value = 0;
+    }
+}
+
+function windslash() {
+    let nazovUtok = "windslash";
+    let percento = 0.5;
+    let percentoSili = 0.8;
+    let mag = percentoSili*magSila;
+    utok(0,mag,0,percento,nazovUtok);
+
+}
+
+function wind() {
+    if (zivotNepriatela.value - maxZivotNepriatela*0.20 > 0) {
+        zivotNepriatela.value -= maxZivotNepriatela*0.20;
+    } else {
+        zivotNepriatela.value = 0;
+    }
+}
+
+function utok(_fyz,_mag,_vie,_percento,_utok) {
     if (_fyz > 0) {
         minusZivoty(_fyz - (maxZivotNepriatela/2),2);
         let random = Math.random() ;
-        if (_percento == 0.4) {
-            if (random < _percento) {
-                flyingkick();
+        if (_utok == "flyingkick") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    throw new Error("Stopping the function!");
+                }
+            }
+        }
+        if (_utok == "bodyslam") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    throw new Error("Stopping the function!");
+                }
+            }
+        }
+        if (_utok == "punchingGataling") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    punchgataling();
+                }
             }
         }
     } else if (_mag > 0) {
-        minusZivoty(maxZivotNepriatela/_mag,2);
+        minusZivoty(_mag - (maxZivotNepriatela/4),2);
+        let random = Math.random() ;
+        if (_utok == "fireball") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    burn();
+                }
+            }
+        }
+        if (_utok == "frostnova") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    frost();
+                }
+            }
+        }
+        if (_utok == "windslash") {
+            if (random <= _percento) {
+                if (zivotNepriatela.value > 0) {
+                    vypisZivoty();
+                    wind();
+                }
+            }
+        }
     } else if (_vie == 1) {
         if ((zivot.value + viera/2) > maxZivoty) {
             zivot.value = maxZivoty;
@@ -130,20 +244,7 @@ function utok(_fyz,_mag,_vie,_percento) {
         fyzSila += fyzSila/5;
         fyzSila += fyzSila/5;
     }
-    if (zivotNepriatela.value == 0) {
-        vypisZivoty();
-        setTimeout(vyhralSi, 2000);
-        stop();
-    } else {
-        utokNepriatela();
-        if (zivot.value == 0) {
-            vypisZivoty();
-            setTimeout(prehralSi, 2000);
-            stop();
-        } else {
-            vypisZivoty();
-        }
-    }
+    skontrolujZivoty();
 }
 
 function utokNepriatela() {
@@ -166,6 +267,18 @@ function prehralSi() {
     gid('stredny').style.display = "block";
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function skontrolujZivoty() {
+    if (zivotNepriatela.value == 0) {
+        vypisZivoty();
+        setTimeout(vyhralSi, 2000);
+    } else {
+        utokNepriatela();
+        if (zivot.value == 0) {
+            vypisZivoty();
+            setTimeout(prehralSi, 2000);
+            stop();
+        } else {
+            vypisZivoty();
+        }
+    }
 }
