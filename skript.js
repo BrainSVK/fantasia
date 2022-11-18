@@ -80,9 +80,17 @@ function vypisZivoty() {
 function minusZivoty(_minus,_kto) {
     if (_kto == 1)
     {
-        zivot.value = zivot.value - (_minus - _minus % 1);
+        if (zivot.value - (_minus - _minus % 1) <= 0) {
+            zivot.value = 0;
+        } else {
+            zivot.value = zivot.value - (_minus - _minus % 1);
+        }
     } else {
-        zivotNepriatela.value = zivotNepriatela.value - (_minus - _minus % 1);
+        if (zivotNepriatela.value - (_minus - _minus % 1) <= 0) {
+            zivotNepriatela.value = 0;
+        } else {
+            zivotNepriatela.value = zivotNepriatela.value - (_minus - _minus % 1);
+        }
     }
 }
 
@@ -122,16 +130,20 @@ function utok(_fyz,_mag,_vie,_percento) {
         fyzSila += fyzSila/5;
         fyzSila += fyzSila/5;
     }
-    if (zivotNepriatela.value <= 0) {
+    if (zivotNepriatela.value == 0) {
         vypisZivoty();
-        sleep(2000).then(() => { vyhralSi(); });
+        setTimeout(vyhralSi, 2000);
+        stop();
+    } else {
+        utokNepriatela();
+        if (zivot.value == 0) {
+            vypisZivoty();
+            setTimeout(prehralSi, 2000);
+            stop();
+        } else {
+            vypisZivoty();
+        }
     }
-    utokNepriatela();
-    if (zivot.value <= 0) {
-        vypisZivoty();
-        sleep(2000).then(() => { prehralSi(); });
-    }
-    vypisZivoty();
 }
 
 function utokNepriatela() {
@@ -146,6 +158,7 @@ function utokNepriatela() {
 function vyhralSi() {
     gid('oknoBoj').style.display = "none";
     gid('stredny').style.display = "block";
+
 }
 
 function prehralSi() {
