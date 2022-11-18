@@ -1,4 +1,3 @@
-
 <?php
 require 'config.php';
 if (!empty($_SESSION["email"])) {
