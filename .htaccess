@@ -1,0 +1,13 @@
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+#     #A) Redirect "/this/is/nice/<anything>" to "/this/<anything>"
+#    RewriteRule ^(semestralka-master-final)/view/(.*) /$1/$2 [R=301,L]
+#     #B) Rewrite "/this/<anything>" to "/this/is/nice/<anything>"
+#    RewriteRule ^(semestralka-master-final)/(.*) $1/view/$2 [END]
+    RewriteRule ^view/(.*)$ /$1 [L,NC,R=302]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+ </IfModule>
