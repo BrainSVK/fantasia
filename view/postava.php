@@ -26,7 +26,6 @@ require_once "../control/pages/schopnosti.php";
 <body>
     <nav>
         <ul id='nav-bar'>
-            <!--                <li class='logo'><a href='#'><img src='./images/logo.png'/></a></li>-->
             <input type='checkbox' id='check' />
             <span class="menu">
                     <li><a href="ohre">O hre</a></li>

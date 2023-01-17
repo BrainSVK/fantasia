@@ -9,12 +9,13 @@ require_once "../control/auth/register.php";
   <meta charset="UTF-8">
   <title>Title</title>
   <link rel="stylesheet" href="../style/style.css">
+  <script type="text/javascript" src="../skript/skript.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div class="center r">
   <h1>Registrovať</h1>
-  <form class="" method="post" action="" autocomplete="off">
+  <form class="" method="post" autocomplete="off">
     <div class="txt_field">
       <input type="text" name="nickname" id="nickname" required>
       <label for="nickname">Nickname</label>
@@ -38,5 +39,11 @@ require_once "../control/auth/register.php";
   </form>
 
 </div>
+<?php
+if (isset($_GET["chyba"]) && $_GET["chyba"] == 1) {
+    echo "<script type='text/javascript'>vypni();</script>";
+    unset($_GET["chyba"]);
+}
+?>
 </body>
 </html>

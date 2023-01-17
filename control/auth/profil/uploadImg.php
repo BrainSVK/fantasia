@@ -61,6 +61,7 @@ if (isset($_GET["chyba"])) {
         echo "<div id='okienko'> <p>Iné typy ako JPG, JEPG, PNG a GIF sa nevkladajú</p> </div>";
     }
     if ($_GET["chyba"] == "nezvoleny_obrazok") {
+        $_GET["chyba"] = 1;
         echo "<div id='okienko'> <p>Nezzvolili ste žiaden obrázok</p> </div>";
     }
 }

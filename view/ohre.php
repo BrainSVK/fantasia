@@ -18,13 +18,13 @@ require_once "../control/locate/zamkniBoj.php";
 <nav>
     <ul id='nav-bar'>
         <input type='checkbox' id='check' />
-        <span class="menu">
+        <div class="menu">
                     <li><a href="ohre">O hre</a></li>
                     <li><a href="profil">Profil</a></li>
                     <li><a href="../control/auth/logout">Odhlasiť sa</a></li>
                     <li><a href="../control/auth/vymaz">Vymazať účet</a></li>
                     <label for="check" class="close-menu"><i class="fas fa-bars"></i></label>
-                </span>
+                </div>
         <label for="check" class="open-menu"><i class="fas fa-bars" style="color: white"></i></label>
     </ul>
 </nav>
