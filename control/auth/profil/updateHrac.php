@@ -5,16 +5,10 @@ require_once "../model/hrac.php";
 
 if (!empty($_SESSION["id"])) {
     if (isset($_POST["submit"])) {
-        if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["password"])) {
-            header("Location: profil?chyba=heslo_obsahuje_len_pismenka_a_cisla");
-        } elseif (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["confirmpassword"])) {
-            header("Location: profil?chyba=heslo_obsahuje_len_pismenka_a_cisla");
-        } elseif (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["nickname"])) {
-            header("Location: profil?chyba=nickname_obsahuje_len_pismenka_a_cisla");
-        } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-            header("Location: profil?chyba=zly_email");
-        } else {
-            if (isset($_POST["nickname"])) {
+        if (isset($_POST["nickname"])) {
+            if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["nickname"])) {
+                header("Location: profil?chyba=nickname_obsahuje_len_pismenka_a_cisla");
+            } else {
                 $nickname = $_POST["nickname"];
                 $hrac = new hrac($_SESSION["id"]);
                 $duplicate = new hrac(null, $nickname, null, null);
@@ -25,7 +19,11 @@ if (!empty($_SESSION["id"])) {
                     header("Location: profil?chyba=ziadna");
                 }
             }
-            if (isset($_POST["email"])) {
+        }
+        if (isset($_POST["email"])) {
+            if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                header("Location: profil?chyba=zly_email");
+            } else {
                 $email = $_POST["email"];
                 $hrac = new hrac($_SESSION["id"]);
                 $duplicate = new hrac(null, null, $email, null);
@@ -36,7 +34,13 @@ if (!empty($_SESSION["id"])) {
                     header("Location: profil?chyba=ziadna");
                 }
             }
-            if (isset($_POST["password"])) {
+        }
+        if (isset($_POST["password"])) {
+            if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["password"])) {
+                header("Location: profil?chyba=heslo_obsahuje_len_pismenka_a_cisla");
+            } elseif (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["confirmpassword"])) {
+                header("Location: profil?chyba=heslo_obsahuje_len_pismenka_a_cisla");
+            } else {
                 $password = $_POST["password"];
                 $confirmpassword = $_POST["confirmpassword"];
                 $hrac = new hrac($_SESSION["id"]);
@@ -50,6 +54,7 @@ if (!empty($_SESSION["id"])) {
                 }
             }
         }
+
     }
 }
 

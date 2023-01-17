@@ -61,29 +61,29 @@ require_once "../control/auth/profil/uploadImg.php";
             <div class="stlpec">
                 <p>Informácie hráča:</p>
                 <p1>Nickname: <?php echo $hrac->getNickname() ?> <br></p1>
-                <form class="forma" action="" method="post" autocomplete="off">
+                <form class="forma" method="post" autocomplete="off">
                     <div class="txt_field1">
-                        <input type="text" name="nickname" required>
+                        <input type="text" id="nickname" name="nickname" required>
                         <label for="nickname">Nové meno</label>
                     </div>
                     <input class="submit1" type="submit" name="submit" value="Potvrdiť">
                 </form>
                 <p1>Email: <?php echo $hrac->getEmail() ?></p1>
-                <form class="forma" action="" method="post" autocomplete="off">
+                <form class="forma" method="post" autocomplete="off">
                     <div class="txt_field1">
-                        <input type="email" name="email" required>
+                        <input type="email" id="email" name="email" required>
                         <label for="email">Nový email</label>
                     </div>
                     <input class="submit1" type="submit" name="submit" value="Potvrdiť">
                 </form>
                 <p1>Heslo:</p1>
-                <form class="forma" action="" method="post" autocomplete="off">
+                <form class="forma" method="post" autocomplete="off">
                     <div class="txt_field1">
-                        <input type="password" name="password" required>
+                        <input type="password" id="password" name="password" required>
                         <label for="password">Nové heslo</label>
                     </div>
                     <div class="txt_field1">
-                        <input type="password" name="confirmpassword" required>
+                        <input type="password" id="confirmpassword" name="confirmpassword" required>
                         <label for="confirmpassword" >Zopakuj Heslo</label>
                     </div>
                     <input class="submit1" type="submit" name="submit" value="Potvrdiť">
@@ -97,7 +97,7 @@ require_once "../control/auth/profil/uploadImg.php";
                 <?php
                 if ($postava->getImg() == "../img-hracov/fiary1.png") {
                 ?>
-                <form class="forma" action="" method="post" enctype="multipart/form-data">
+                <form class="forma" method="post" enctype="multipart/form-data">
                     <input type="file" name="image" required>
                     <br>
                     <input class="submit2" type="submit" name="submit" value="Upload">
